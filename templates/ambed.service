@@ -1,13 +1,16 @@
 [Unit]
 Description=AMBED
-After=network-online.target
-Wants=network-online.target
+After=network.target
 
 [Service]
 Type=simple
+User=root
+Group=root
+ExecStartPre=/bin/sleep 30
 ExecStartPre=-/sbin/rmmod ftdi_sio
-ExecStartPre=-/sbin/rmmod usbserial 
+ExecStartPre=-/sbin/rmmod usbserial
 ExecStart=/ambed/ambed LOCAL-IP
+Restart=on-abnormal
 
 [Install]
 WantedBy=multi-user.target
