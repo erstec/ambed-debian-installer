@@ -79,6 +79,13 @@ fi
 echo "------------------------------------------------------------------------------"
 echo "Downloading and installing AMBED..."
 echo "------------------------------------------------------------------------------"
+
+if [ -e $AMBINSTDIR/xlxd ]
+then
+        echo "It looks like ambe is already installed. If this is wrong, delete the $AMBINSTDIR/xlxd directory and try again. Exiting....."
+        exit 0
+fi
+
 cd $AMBINSTDIR
 git clone -b $GITBRANCH $GITREPO
 cd $AMBINSTDIR/xlxd/ambed/
