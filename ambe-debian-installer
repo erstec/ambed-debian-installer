@@ -21,7 +21,7 @@ fi
 if [ ! -e "/etc/debian_version" ]
 then
   echo ""
-  echo "This script is only tested in Debian 8,9 and x64 cpu Arch. for now."
+  echo "This script is only tested in Debian 8, 9, 10, 11 and 12 and x64 cpu Arch. for now."
   exit 0
 fi
 DIRDIR=$(pwd)
@@ -32,7 +32,8 @@ X32=http://www.ftdichip.com/Drivers/D2XX/Linux/libftd2xx-i386-1.4.6.tgz
 ARM=https://www.ftdichip.com/Drivers/D2XX/Linux/libftd2xx-arm-v7-hf-1.4.22.tgz
 AMBINSTDIR=/root/reflector-install-files/ambed
 DEP="wget git build-essential"
-GITREPO=https://github.com/LX3JL/xlxd.git
+GITREPO=https://github.com/erstec/xlxd.git
+GITBRANCH=dark-mode
 echo "------------------------------------------------------------------------------"
 echo " Installing required software..."
 echo "------------------------------------------------------------------------------"
@@ -79,7 +80,7 @@ echo "--------------------------------------------------------------------------
 echo "Downloading and installing AMBED..."
 echo "------------------------------------------------------------------------------"
 cd $AMBINSTDIR
-git clone $GITREPO
+git clone -b $GITBRANCH $GITREPO
 cd $AMBINSTDIR/xlxd/ambed/
 make clean
 make
@@ -89,7 +90,7 @@ then
         echo "------------------------------------------------------------------------------"
         echo "It looks like everything compiled successfully. There is an 'ambed' application file. "
         echo "------------------------------------------------------------------------------"
-        else
+else
         echo "------------------------------------------------------------------------------"
         echo "I dont see an AMBED file after compiling. Look at the errors above and try again. Exiting....."
         echo "------------------------------------------------------------------------------"
